@@ -1,4 +1,4 @@
-# w-training
+<!-- # w-training
 
 w-training
 
@@ -33,7 +33,7 @@ Then, set in `.env` some variables:
 - DB_NAME_TEST=db_project_name_test
 - API_DATE=X-API-Date
 - PACKAGE_VERSION=X-Package-Version
-- NODE_VERSION=X-Node-Version
+- NODE_VERSION=X-Node-Version -->
 
 ### Migrations
 
@@ -42,9 +42,9 @@ To create a migration, run `./node_modules/.bin/sequelize migration:create --nam
 To run them, execute `npm run migrations`.
 
 
-#### Starting your app
+<!-- #### Starting your app
 
-Now, we have two ways to start an app. To start your app in production mode run `npm start` in the root path of your project. To start your app in development mode (nodemon) run `npm run start-dev`. Then access your app at **localhost:port**. The port is logged in the console where you ran the start script.
+Now, we have two ways to start an app. To start your app in production mode run `npm start` in the root path of your project. To start your app in development mode (nodemon) run `npm run start-dev`. Then access your app at **localhost:port**. The port is logged in the console where you ran the start script. -->
 
 ## Development
 
