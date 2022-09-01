@@ -1,4 +1,3 @@
-// const controller = require('./controllers/controller');
 const { healthCheck } = require('./controllers/healthCheck');
 const { jokes } = require('./controllers/jokes');
 

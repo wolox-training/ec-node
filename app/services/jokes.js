@@ -1,10 +1,9 @@
 const axios = require('axios');
-
-const apiURL = 'https://geek-jokes.sameerkumar.website/api?format=json';
+const config = require('../../config');
 
 exports.getJokes = async () => {
   try {
-    const apiResponse = await axios.get(apiURL);
+    const apiResponse = await axios.get(config.apiJokes.apiUrl);
     return apiResponse.data;
   } catch (error) {
     return error;
