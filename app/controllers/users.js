@@ -1,11 +1,10 @@
-const User = require('../models').users;
+const userService = require('../services/users');
 
 exports.signUp = async (req, res) => {
   try {
-    console.log(req.body);
-    const userCreated = await User.create({
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
+    const userCreated = await userService.createUser({
+      firstName: req.body.first_name,
+      lastName: req.body.last_name,
       email: req.body.email,
       password: req.body.password
     });
