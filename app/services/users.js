@@ -4,8 +4,7 @@ const errorMsg = require('../constants/errorMessages');
 
 exports.createUser = async userParams => {
   try {
-    await User.create(userParams);
-    return userParams;
+    return await User.create(userParams);
   } catch (error) {
     throw databaseError(errorMsg.userError);
   }
