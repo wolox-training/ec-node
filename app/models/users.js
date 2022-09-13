@@ -42,6 +42,10 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           isEmail: {
             msg: 'El email tiene que ser un correo valido'
+          },
+          contains: {
+            args: ['@wolox.com'],
+            msg: 'El email debe ser del dominio wolox'
           }
         }
       },
@@ -50,8 +54,8 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           len: {
-            args: [6, 255],
-            msg: 'La contraseña tiene que tener minimamente 6 caracteres'
+            args: [8, 255],
+            msg: 'La contraseña tiene que tener minimamente 8 caracteres'
           }
         }
       }
