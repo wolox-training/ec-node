@@ -6,6 +6,7 @@ const helper = require('../helpers/helpers');
 exports.signUp = async (req, res, next) => {
   try {
     const password = helper.encryptPassword(req.body.password);
+    console.log(password);
     const userObject = req.body;
     const userCreated = varParse.nameParse(userObject, password);
     await userService.createUser(userCreated);
