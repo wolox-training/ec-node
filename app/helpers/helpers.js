@@ -10,6 +10,6 @@ exports.encryptPassword = password => {
     return encryptedPassword;
   } catch (error) {
     logger.error(error.message);
-    throw defaultError(errorMsg.userError);
+    throw defaultError(errorMsg.encriptedError);
   }
 };
