@@ -46,6 +46,9 @@ const config = {
       nodeVersion: process.env.NODE_VERSION || 'X-Node-Version'
     }
   },
+  apiJokes: {
+    apiUrl: process.env.API_URL
+  },
   auth: {
     secret: process.env.AUTH_SECRET || 'password',
     expires: process.env.AUTH_EXPIRES || '24h',
