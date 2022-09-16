@@ -48,6 +48,11 @@ const config = {
   },
   apiJokes: {
     apiUrl: process.env.API_URL
+  },
+  auth: {
+    secret: process.env.AUTH_SECRET || 'password',
+    expires: process.env.AUTH_EXPIRES || '24h',
+    rounds: process.env.AUTH_ROUNDS || 10
   }
 };
 
