@@ -1,12 +1,15 @@
 const axios = require('axios');
-
-const apiURL = 'https://geek-jokes.sameerkumar.website/api?format=json';
+const config = require('../../config');
+const errorMsg = require('../constants/errorsMessages');
+const { defaultError } = require('../errors');
+const logger = require('../logger');
 
 exports.getJokes = async () => {
   try {
-    const apiResponse = await axios.get(apiURL);
+    const apiResponse = await axios.get(config.apiJokes.apiUrl);
     return apiResponse.data;
   } catch (error) {
-    return error;
+    logger.error(error);
+    throw defaultError(errorMsg.apiError);
   }
 };
