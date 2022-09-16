@@ -9,6 +9,7 @@ exports.signUp = async (req, res, next) => {
     const userObject = req.body;
     const userCreated = varParse.nameParse(userObject, password);
     await userService.createUser(userCreated);
+    logger.info('User created: ', userCreated);
     res.status(201).send(userCreated);
   } catch (error) {
     logger.error(error.message);
