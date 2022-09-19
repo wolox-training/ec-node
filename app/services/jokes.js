@@ -1,6 +1,6 @@
 const axios = require('axios');
 const config = require('../../config');
-const errorMsg = require('../constants/errorsMessages');
+const errorMsg = require('../constants/errorMessages');
 const { defaultError } = require('../errors');
 const logger = require('../logger');
 

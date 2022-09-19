@@ -44,7 +44,7 @@ module.exports = (sequelize, DataTypes) => {
             msg: 'El email tiene que ser un correo valido'
           },
           contains: {
-            args: ['@wolox.com'],
+            args: ['@wolox'],
             msg: 'El email debe ser del dominio wolox'
           }
         }
