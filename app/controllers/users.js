@@ -13,7 +13,6 @@ exports.signUp = async (req, res, next) => {
     res.status(201).send(userCreated);
   } catch (error) {
     logger.error(error.message);
-    console.log(error, 'asd');
     next(error);
   }
 };
