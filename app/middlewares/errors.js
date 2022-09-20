@@ -9,6 +9,7 @@ const statusCodes = {
 };
 
 exports.handle = (error, req, res, next) => {
+  console.log(error, 'aqui');
   if (error.internalCode) res.status(statusCodes[error.internalCode] || DEFAULT_STATUS_CODE);
   else {
     // Unrecognized error, notifying it to rollbar.
