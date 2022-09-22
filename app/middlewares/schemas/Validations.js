@@ -1,6 +1,6 @@
 const { checkSchema } = require('express-validator');
 
-exports.checkParam = checkSchema({
+exports.checkParamSignUp = checkSchema({
   firstName: {
     isUppercase: {
       negated: true
@@ -19,6 +19,21 @@ exports.checkParam = checkSchema({
       options: { min: 2 }
     }
   },
+  email: {
+    isEmail: {
+      bail: true
+    },
+    contains: '@wolox',
+    errorMessage: 'El email tiene que se de dominio wolox'
+  },
+  password: {
+    isLength: {
+      errorMessage: 'La constraseña debe contener mas de 8 caracteres',
+      options: { min: 8 }
+    }
+  }
+});
+exports.checkParamSignIn = checkSchema({
   email: {
     isEmail: {
       bail: true

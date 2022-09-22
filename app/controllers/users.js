@@ -16,3 +16,18 @@ exports.signUp = async (req, res, next) => {
     next(error);
   }
 };
+exports.signIn = async (req, res, next) => {
+  try {
+    const userLog = req.body;
+    console.log(userLog);
+    const userLoged = await userService.findUser(userLog);
+    console.log(userLoged);
+    const decryptedUser = await helper.decryptPassword(userLog.password, userLoged);
+    const token = await helper.createToken(decryptedUser);
+    logger.info('Token Created: ', token);
+    res.status(200).send(token);
+  } catch (error) {
+    logger.error(error.message);
+    next(error);
+  }
+};
