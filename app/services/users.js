@@ -19,7 +19,6 @@ exports.findUser = async logInfo => {
         email
       }
     });
-    console.log(userFound);
     return userFound;
   } catch (error) {
     logger.error(error);

@@ -19,9 +19,9 @@ exports.signUp = async (req, res, next) => {
 exports.signIn = async (req, res, next) => {
   try {
     const userLog = req.body;
-    console.log(userLog);
+    logger.info('User Log: ', userLog);
     const userLoged = await userService.findUser(userLog);
-    console.log(userLoged);
+    logger.info('User Loged: ', userLoged);
     const decryptedUser = await helper.decryptPassword(userLog.password, userLoged);
     const token = await helper.createToken(decryptedUser);
     logger.info('Token Created: ', token);
