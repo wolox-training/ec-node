@@ -3,7 +3,7 @@ const app = require('../../app');
 const userService = require('../../app/services/users');
 const mockSignUp = require('../mockSignUp');
 
-describe.skip('Should get a user', () => {
+describe('Should get a user', () => {
   let userServiceMock = 0;
   beforeEach(() => {
     userServiceMock = jest
