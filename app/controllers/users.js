@@ -31,3 +31,13 @@ exports.signIn = async (req, res, next) => {
     next(error);
   }
 };
+exports.getUsers = async (req, res, next) => {
+  try {
+    const allUsers = await userService.getUsers();
+    logger.info('Usuarios: ', allUsers);
+    res.status(200).send(allUsers);
+  } catch (error) {
+    logger.error(error.message);
+    next(error);
+  }
+};

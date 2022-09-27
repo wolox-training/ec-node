@@ -1,12 +1,13 @@
 const { healthCheck } = require('./controllers/healthCheck');
 const { jokes } = require('./controllers/jokes');
-const { signUp, signIn } = require('./controllers/users');
-const { validateParams } = require('./middlewares/paramsValidator');
+const { signUp, signIn, getUsers } = require('./controllers/users');
+const { validateParams, verifyToken } = require('./middlewares/paramsValidator');
 const { checkParamSignUp, checkParamSignIn } = require('./middlewares/schemas/Validations');
 
 exports.init = app => {
   app.get('/health', healthCheck);
   app.get('/jokes', jokes);
+  app.get('/users', [verifyToken], getUsers);
   app.post('/users', [checkParamSignUp, validateParams], signUp);
   app.post('/users/sessions', [checkParamSignIn, validateParams], signIn);
 };
