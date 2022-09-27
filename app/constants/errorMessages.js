@@ -1,7 +1,11 @@
 const errorMsg = {
   apiError: 'Error: falied to connect with jokes api.',
   userError: 'Error: failed to create user.',
-  encriptedError: 'Error: failed to encrypt the password'
+  encriptedError: 'Error: failed to encrypt the password',
+  decritedError: 'Error: Password does not correspond',
+  userFindError: 'Error: User is not found',
+  emailError: 'Error: Email is not in the database',
+  tokenError: 'Error: Failed to create a token'
 };
 
 module.exports = errorMsg;
