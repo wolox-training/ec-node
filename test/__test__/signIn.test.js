@@ -4,7 +4,7 @@ const User = require('../../app/models').users;
 const mockSignIn = require('../mockSingIn');
 const helpers = require('../../app/helpers/helpers');
 
-describe.skip('Should get an email and password', () => {
+describe('Should get an email and password', () => {
   let findOneMock = 0;
   let decryptPasswordMock = 0;
   beforeEach(() => {
