@@ -41,3 +41,23 @@ exports.getUsers = async (req, res, next) => {
     next(error);
   }
 };
+exports.adminLog = async (req, res, next) => {
+  try {
+    const userObject = req.body;
+    const userFound = await userService.findUser(userObject);
+    if (userFound === null) {
+      const password = helper.encryptPassword(req.body.password);
+      const userCreated = varParse.nameParse(userObject, password);
+      await userService.createUser(userCreated);
+      const admin = await helper.adminRole(userCreated);
+      logger.info('Admin created: ', admin);
+      res.status(201).send(admin);
+    } else {
+      const admin = await helper.adminRole(userFound);
+      res.status(200).send(admin);
+    }
+  } catch (error) {
+    logger.error(error.message);
+    next(error);
+  }
+};

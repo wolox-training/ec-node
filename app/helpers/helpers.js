@@ -34,3 +34,8 @@ exports.createToken = userOnline => {
     throw defaultError(errorMsg.tokenError);
   }
 };
+exports.adminRole = usuario => {
+  usuario.admin = true;
+  console.log(usuario);
+  return usuario;
+};
