@@ -3,7 +3,7 @@ const migrationsManager = require('./migrations');
 const config = require('./config');
 const logger = require('./app/logger');
 
-const port = config.common.api.port || 8080;
+const port = process.env.PORT || 8080;
 
 Promise.resolve()
   .then(() => migrationsManager.check())
