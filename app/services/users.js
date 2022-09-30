@@ -34,19 +34,3 @@ exports.getUsers = async () => {
     throw databaseError(errorMsg.userFindError);
   }
 };
-// exports.findAdmin = async logInfo => {
-//   try {
-//     const { email, firstName, lastName } = logInfo;
-//     const userFound = await User.findOne({
-//       where: {
-//         email,
-//         firstName,
-//         lastName
-//       }
-//     });
-//     return userFound;
-//   } catch (error) {
-//     logger.error(error);
-//     throw databaseError(errorMsg.userFindError);
-//   }
-// };

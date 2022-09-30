@@ -1,13 +1,14 @@
 const userService = require('../services/users');
-const varParse = require('../serializers/varParse');
+const varParse = require('../serializers/parser');
 const logger = require('../logger');
 const helper = require('../helpers/helpers');
+const parser = require('../serializers/parser');
 
 exports.signUp = async (req, res, next) => {
   try {
-    const password = helper.encryptPassword(req.body.password);
+    const password = helper.passEncryptred(req.body.password);
     const userObject = req.body;
-    const userCreated = varParse.nameParse(userObject, password);
+    const userCreated = parser.nameParse(userObject, password);
     await userService.createUser(userCreated);
     logger.info('User created: ', userCreated);
     res.status(201).send(userCreated);
@@ -22,7 +23,7 @@ exports.signIn = async (req, res, next) => {
     logger.info('User Log: ', userLog);
     const userLoged = await userService.findUser(userLog);
     logger.info('User Loged: ', userLoged);
-    const decryptedUser = await helper.decryptPassword(userLog.password, userLoged);
+    const decryptedUser = await helper.passEncryptred(userLog.password, userLoged);
     const token = await helper.createToken(decryptedUser);
     logger.info('Token Created: ', token);
     res.status(200).send(token);
@@ -46,14 +47,15 @@ exports.adminLog = async (req, res, next) => {
     const userObject = req.body;
     const userFound = await userService.findUser(userObject);
     if (userFound === null) {
-      const password = helper.encryptPassword(req.body.password);
+      const password = helper.passEncryptred(userObject.password);
       const userCreated = varParse.nameParse(userObject, password);
-      await userService.createUser(userCreated);
       const admin = await helper.adminRole(userCreated);
-      logger.info('Admin created: ', admin);
+      await userService.createUser(admin);
+      logger.info('Admin created: ', admin.firstName);
       res.status(201).send(admin);
     } else {
-      const admin = await helper.adminRole(userFound);
+      const admin = await parser.adminRole(userFound);
+      await admin.save();
       res.status(200).send(admin);
     }
   } catch (error) {

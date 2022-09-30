@@ -28,7 +28,9 @@ module.exports = {
         allowNull: false
       },
       admin: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        allowNull: true,
+        value: false
       }
     });
   },

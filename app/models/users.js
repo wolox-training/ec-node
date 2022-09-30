@@ -59,7 +59,11 @@ module.exports = (sequelize, DataTypes) => {
           }
         }
       },
-      admin: false
+      admin: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true,
+        value: false
+      }
     },
     {
       tablename: 'users',
