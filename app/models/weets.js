@@ -2,10 +2,16 @@ module.exports = (sequelize, DataTypes) => {
   const Weet = sequelize.define(
     'weets',
     {
-      userId :{
+      id: {
+        primaryKey: true,
         type: DataTypes.INTEGER,
         allowNull: false,
+        autoIncrement: true,
         unique: true
+      },
+      email :{
+        type: DataTypes.INTEGER,
+        allowNull: false,
       },
       content: {
         type: DataTypes.STRING,
