@@ -58,6 +58,11 @@ module.exports = (sequelize, DataTypes) => {
             msg: 'La contraseña tiene que tener minimamente 8 caracteres'
           }
         }
+      },
+      admin: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true,
+        value: false
       }
     },
     {
