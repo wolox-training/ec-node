@@ -5,7 +5,3 @@ exports.nameParse = (userParams, password, admin = false) => ({
   password,
   admin
 });
-exports.adminRole = usuario => {
-  usuario.admin = true;
-  return usuario;
-};
