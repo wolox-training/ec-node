@@ -9,7 +9,8 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
         unique: true
       },
-      email :{
+      userId: {
+        primaryKey: true,
         type: DataTypes.INTEGER,
         allowNull: false,
       },
@@ -22,6 +23,12 @@ module.exports = (sequelize, DataTypes) => {
             msg: 'La contraseña tiene que tener minimamente 8 caracteres'
           }
         }
+      },
+      associate(models){
+        weets.belongsTo(models.users, {
+          foreingKey: 'id',
+          target_key: 'userId',
+        })
       }
     },
     {

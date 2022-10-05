@@ -10,9 +10,13 @@ module.exports = {
         autoIncrement: true,
         unique: true
       },
-      email: {
+      userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        references:{
+          model: 'users',
+          key: 'id'
+        }
       },
       content: {
         type: Sequelize.STRING,
@@ -23,5 +27,5 @@ module.exports = {
 
   async down(queryInterface) {
     await queryInterface.dropTable('weets');
-  }
+  },
 };
