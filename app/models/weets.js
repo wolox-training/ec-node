@@ -1,6 +1,17 @@
+'use strict';
+
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
-  const Weet = sequelize.define(
-    'weets',
+  class Weet extends Model {
+    static associate(models) {
+      Weet.belongsTo(models.User, {
+        foreignKey: 'userId',
+        targetKey: 'id'
+      });
+    }
+  }
+  Weet.init(
     {
       id: {
         primaryKey: true,
@@ -11,20 +22,15 @@ module.exports = (sequelize, DataTypes) => {
       },
       userId: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: false
       },
       content: {
         type: DataTypes.STRING,
-        allowNull: false,
-      },
-      associate(models){
-        weets.belongsTo(models.users, {
-          foreingKey: 'userId',
-          target_key: 'id',
-        })
+        allowNull: false
       }
     },
     {
+      sequelize,
       tablename: 'weets',
       timestamps: false
     }
