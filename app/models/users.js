@@ -59,7 +59,16 @@ module.exports = (sequelize, DataTypes) => {
           }
         }
       },
-      admin: false
+      admin: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true,
+        value: false
+      },
+      associate(models){
+        User.hasMany(models.weets,{
+          foreignKey: 'userId'
+        })
+      }
     },
     {
       tablename: 'users',

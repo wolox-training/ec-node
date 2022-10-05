@@ -10,7 +10,6 @@ module.exports = (sequelize, DataTypes) => {
         unique: true
       },
       userId: {
-        primaryKey: true,
         type: DataTypes.INTEGER,
         allowNull: false,
       },
@@ -19,15 +18,15 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           len: {
-            args: [0, 255],
-            msg: 'La contraseña tiene que tener minimamente 8 caracteres'
+            args: [0, 140],
+            msg: 'El weet no puede contener mas 140 caracteres'
           }
         }
       },
       associate(models){
         weets.belongsTo(models.users, {
-          foreingKey: 'id',
-          target_key: 'userId',
+          foreingKey: 'userId',
+          target_key: 'id',
         })
       }
     },
