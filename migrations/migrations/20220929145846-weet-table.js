@@ -13,7 +13,7 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references:{
+        references: {
           model: 'users',
           key: 'id'
         },
@@ -22,12 +22,12 @@ module.exports = {
       },
       content: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: false
       }
     });
   },
 
   async down(queryInterface) {
     await queryInterface.dropTable('weets');
-  },
+  }
 };
