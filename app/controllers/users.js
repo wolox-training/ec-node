@@ -1,13 +1,13 @@
 const userService = require('../services/users');
-const varParse = require('../serializers/varParse');
 const logger = require('../logger');
 const helper = require('../helpers/helpers');
+const parser = require('../serializers/parser');
 
 exports.signUp = async (req, res, next) => {
   try {
-    const password = helper.encryptPassword(req.body.password);
     const userObject = req.body;
-    const userCreated = varParse.nameParse(userObject, password);
+    const password = helper.passEncryptred(req.body.password);
+    const userCreated = parser.nameParse(userObject, password);
     await userService.createUser(userCreated);
     logger.info('User created: ', userCreated);
     res.status(201).send(userCreated);
@@ -46,14 +46,14 @@ exports.adminLog = async (req, res, next) => {
     const userObject = req.body;
     const userFound = await userService.findUser(userObject);
     if (userFound === null) {
-      const password = helper.encryptPassword(req.body.password);
-      const userCreated = varParse.nameParse(userObject, password);
-      await userService.createUser(userCreated);
-      const admin = await helper.adminRole(userCreated);
-      logger.info('Admin created: ', admin);
-      res.status(201).send(admin);
+      const password = helper.passEncryptred(userObject.password);
+      const userToCreate = parser.nameParse(userObject, password, true);
+      await userService.createUser(userToCreate);
+      logger.info('Admin created: ', userToCreate.first_name);
+      res.status(201).send(userToCreate);
     } else {
-      const admin = await helper.adminRole(userFound);
+      const admin = await parser.nameParse(userFound, userFound.password, true);
+      await admin.save();
       res.status(200).send(admin);
     }
   } catch (error) {

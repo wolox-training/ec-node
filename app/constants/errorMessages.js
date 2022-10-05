@@ -5,9 +5,7 @@ const errorMsg = {
   decritedError: 'Error: Password does not correspond',
   userFindError: 'Error: User is not found',
   emailError: 'Error: Email is not in the database',
-  tokenError: 'Error: Failed to create a token',
-  signInError: 'Error: you need to sign in to be an admin',
-  adminError: 'Error: this user is already an admin'
+  tokenError: 'Error: Failed to create a token'
 };
 
 module.exports = errorMsg;
