@@ -5,7 +5,7 @@ const logger = require('../logger');
 const errorMsg = require('../constants/errorMessages');
 const { defaultError } = require('../errors');
 
-exports.encryptPassword = password => {
+exports.passEncryptred = password => {
   try {
     const encryptedPassword = bcryptjs.hashSync(password, Number(config.auth.rounds));
     return encryptedPassword;
