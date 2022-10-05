@@ -16,12 +16,6 @@ module.exports = (sequelize, DataTypes) => {
       content: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-          len: {
-            args: [0, 140],
-            msg: 'El weet no puede contener mas 140 caracteres'
-          }
-        }
       },
       associate(models){
         weets.belongsTo(models.users, {
