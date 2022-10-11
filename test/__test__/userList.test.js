@@ -4,7 +4,7 @@ const User = require('../../app/models').users;
 const mockUserList = require('../mockUserList');
 const userService = require('../../app/services/users');
 
-describe('Should get a token', () => {
+describe.skip('Should get a token', () => {
   let findAllMock = 0;
   let getUsersMock = 0;
   beforeEach(() => {

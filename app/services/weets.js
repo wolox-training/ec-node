@@ -3,7 +3,7 @@ const errorMsg = require('../constants/errorMessages');
 const { databaseError } = require('../errors');
 const logger = require('../logger');
 
-exports.createUser = async userWeet => {
+exports.userWeet = async userWeet => {
   try {
     return await Weet.create(userWeet);
   } catch (error) {

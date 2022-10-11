@@ -48,3 +48,12 @@ exports.checkParamSignIn = checkSchema({
     }
   }
 });
+exports.checkParamWeet = checkSchema({
+  email: {
+    isEmail: {
+      bail: true
+    },
+    contains: '@wolox',
+    errorMessage: 'El email tiene que se de dominio wolox'
+  }
+});

@@ -8,9 +8,11 @@ exports.postWeets = async (req, res, next) => {
     const user = req.body;
     const userFound = await userService.findUser(user);
     if (userFound) {
-      const weet = jokesService.getJokes();
-      const weetCreated = await weetService.userWeet(user, weet);
-      res.status(400).send(weetCreated);
+      const weet = await jokesService.getJokes();
+      const weetCreated = await weetService.userWeet({ userId: userFound.id, content: weet });
+      res.status(200).send(weetCreated);
+    } else {
+      res.status(400).send({ msg: 'No se encontro usuario' });
     }
   } catch (error) {
     logger.error(error.message);

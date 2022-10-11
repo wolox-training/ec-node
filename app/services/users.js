@@ -5,7 +5,6 @@ const logger = require('../logger');
 
 exports.createUser = async userParams => {
   try {
-    console.log(userParams);
     return await db.User.create(userParams);
   } catch (error) {
     logger.error(error);

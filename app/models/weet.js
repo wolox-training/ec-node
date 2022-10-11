@@ -29,7 +29,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       tablename: 'weets',
-      timestamps: false
+      timestamps: false,
+      underscored: true
     }
   );
   Weet.associate = models => {
