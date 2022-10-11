@@ -24,7 +24,13 @@ module.exports = (sequelize, DataTypes) => {
       },
       content: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          len: {
+            args: [0, 140],
+            msg: 'El Weet no puede tener mas de 140 caracteres'
+          }
+        }
       }
     },
     {

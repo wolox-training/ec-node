@@ -1,25 +1,31 @@
 const request = require('supertest');
 const app = require('../../app');
-const weetService = require('../../app/services/weets');
+const weetControler = require('../../app/controllers/weets');
 const mockWeet = require('../mockWeet');
 
-describe('Should get a user', () => {
+describe('Should get a weet from the API', () => {
   let weetServiceMock = 0;
   beforeEach(() => {
-    weetServiceMock = jest.spyOn(weetService, 'userWeet').mockResolvedValueOnce(mockWeet.mock1);
+    weetServiceMock = jest
+      .spyOn(weetControler, 'createWeet')
+      .mockResolvedValueOnce(mockWeet.weetCreated)
+      .mockRejectedValueOnce(mockWeet.weetFailed);
+  });
+  afterEach(() => {
+    weetServiceMock.mockClear();
   });
   test('Should save the user weet', async () => {
     await request(app)
-      .post('/users')
-      .send(mockWeet.test1)
+      .post('/weets')
+      .set(`authToken${mockWeet.responseSuccess}`)
       .expect(201);
     expect(weetServiceMock).toHaveBeenCalled();
   });
-  test('user should not be found', async () => {
+  test('shoud not save a weet', async () => {
     await request(app)
-      .post('/users')
-      .send(mockWeet.test4)
-      .expect(400);
+      .post('/weets')
+      .send(mockWeet.badTest)
+      .expect(401);
     expect(weetServiceMock).not.toHaveBeenCalled();
   });
 });

@@ -1,8 +1,9 @@
 const { healthCheck } = require('./controllers/healthCheck');
 const { signUp, signIn, getUsers, adminLog } = require('./controllers/users');
-const { postWeets } = require('./controllers/weets');
-const { validateParams, verifyToken } = require('./middlewares/paramsValidator');
-const { checkParamSignUp, checkParamSignIn, checkParamWeet } = require('./middlewares/schemas/Validations');
+const { createWeet } = require('./controllers/weets');
+const { verifyToken } = require('./middlewares/authenticator');
+const { validateParams } = require('./middlewares/paramsValidator');
+const { checkParamSignUp, checkParamSignIn } = require('./middlewares/schemas/Validations');
 
 exports.init = app => {
   app.get('/health', healthCheck);
@@ -10,5 +11,5 @@ exports.init = app => {
   app.post('/users', [checkParamSignUp, validateParams], signUp);
   app.post('/admin/users', [checkParamSignUp, validateParams], adminLog);
   app.post('/users/sessions', [checkParamSignIn, validateParams], signIn);
-  app.post('/weets', [checkParamWeet, validateParams, verifyToken], postWeets);
+  app.post('/weets', [verifyToken], createWeet);
 };
