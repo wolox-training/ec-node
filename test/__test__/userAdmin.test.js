@@ -4,7 +4,7 @@ const User = require('../../app/models').users;
 const mockUserAdmin = require('../mockUserAdmin');
 const helper = require('../../app/helpers/helpers');
 
-describe.skip('Should get a user', () => {
+describe('Should get a user', () => {
   let findOneMock = 0;
   let adminRoleMock = 0;
   test('Should give the user the rol of administrator', async () => {
