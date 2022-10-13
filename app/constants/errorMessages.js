@@ -5,7 +5,8 @@ const errorMsg = {
   decritedError: 'Error: Password does not correspond',
   userFindError: 'Error: User is not found',
   emailError: 'Error: Email is not in the database',
-  tokenError: 'Error: Failed to create a token'
+  tokenError: 'Error: Failed to create a token',
+  weetFindError: 'Error: Weets not found'
 };
 
 module.exports = errorMsg;

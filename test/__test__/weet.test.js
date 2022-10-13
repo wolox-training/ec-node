@@ -17,14 +17,14 @@ describe('Should get a weet from the API', () => {
   test('Should save the user weet', async () => {
     await request(app)
       .post('/weets')
-      .set(`authToken${mockWeet.mockToken}`)
+      .set(`authToken${mockWeet.responseSuccess}`)
       .expect(201);
     expect(weetServiceMock).toHaveBeenCalled();
   });
   test('shoud not save a weet', async () => {
     await request(app)
       .post('/weets')
-      .set(`authToken${'invalidtoken'}`)
+      .send(mockWeet.badTest)
       .expect(401);
     expect(weetServiceMock).not.toHaveBeenCalled();
   });
