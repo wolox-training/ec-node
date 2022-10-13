@@ -6,8 +6,11 @@ const logger = require('../logger');
 
 exports.getJokes = async () => {
   try {
-    const apiResponse = await axios.get(config.apiJokes.apiUrl);
-    return apiResponse.data;
+    let apiResponse = '';
+    do {
+      apiResponse = await axios.get(config.apiJokes.apiUrl);
+    } while (apiResponse.data.joke.length > 140);
+    return apiResponse.data.joke;
   } catch (error) {
     logger.error(error);
     throw defaultError(errorMsg.apiError);

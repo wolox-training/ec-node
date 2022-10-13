@@ -10,10 +10,10 @@ module.exports = {
         autoIncrement: true,
         unique: true
       },
-      userId: {
+      user_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references:{
+        references: {
           model: 'users',
           key: 'id'
         },
@@ -23,11 +23,17 @@ module.exports = {
       content: {
         type: Sequelize.STRING,
         allowNull: false,
+        validate: {
+          len: {
+            args: [0, 140],
+            msg: 'El Weet no puede tener mas de 140 caracteres'
+          }
+        }
       }
     });
   },
 
   async down(queryInterface) {
     await queryInterface.dropTable('weets');
-  },
+  }
 };
