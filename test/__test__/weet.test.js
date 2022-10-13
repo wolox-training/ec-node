@@ -24,7 +24,7 @@ describe('Should get a weet from the API', () => {
   test('shoud not save a weet', async () => {
     await request(app)
       .post('/weets')
-      .send(mockWeet.responseFailed)
+      .set(`authToken${'invalidtoken'}`)
       .expect(401);
     expect(weetServiceMock).not.toHaveBeenCalled();
   });
